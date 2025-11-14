@@ -7,18 +7,17 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
 </head>
 
 <body>
-    <!-- NAVBAR -->
     <nav class="navbar-admin fixed-top">
         <div class="container d-flex justify-content-between align-items-center">
-
+            <!-- Logo / Brand -->
             <a class="navbar-brand" href="{{ route('admin.home') }}">
                 <i class="bi bi-building"></i> VLXD - Admin
             </a>
 
+            <!-- User info + Logout -->
             @if (session('user'))
                 <div class="d-flex align-items-center">
                     <span class="text-light me-3">
@@ -31,16 +30,8 @@
             @endif
         </div>
     </nav>
-
-    <!-- SIDEBAR -->
-    <div class="admin-sidebar">
-        <a href="{{ route('admin.home') }}"><i class="bi bi-house"></i> Trang chủ</a>
-
-        <a href="{{ route('admin.sanpham.index') }}"><i class="bi bi-box"></i> Sản phẩm</a>
-    </div>
-
-    <!-- CONTENT -->
-    <div class="admin-content">
+    <!-- Nội dung admin -->
+    <div class="container mt-4">
         @yield('content')
     </div>
 
@@ -54,6 +45,8 @@
             }
         });
     </script>
+
+
 </body>
 
 </html>
