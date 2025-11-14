@@ -1,0 +1,28 @@
+@import url('admin.css');
+@import url('user.css');
+@import url('show.css');
+
+/* app.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4; /* Màu chung */
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Table cơ bản */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #3498db;
+    color: #fff;
+}

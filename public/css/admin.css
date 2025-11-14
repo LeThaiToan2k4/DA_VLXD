@@ -1,0 +1,130 @@
+/* ============================
+   NAVBAR ADMIN
+   ============================ */
+.navbar-admin {
+    background: linear-gradient(90deg, #2c3e50, #34495e);
+    padding: 12px 20px;
+    color: #fff;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid #f39c12;
+    z-index: 1000;
+}
+
+.navbar-admin .navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #f39c12;
+    text-decoration: none;
+}
+
+.navbar-admin .navbar-brand:hover {
+    color: #e67e22;
+}
+
+.btn-admin {
+    background-color: #e74c3c;
+    color: #fff;
+    border-radius: 6px;
+    padding: 6px 15px;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-admin:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+.navbar-admin span {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* Hiệu ứng thu nhỏ khi cuộn */
+.navbar-admin.shrink {
+    padding: 8px 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    border-bottom: 2px solid #f39c12;
+}
+
+
+/* ============================
+   SIDEBAR ADMIN
+   ============================ */
+.admin-sidebar {
+    position: fixed;
+    top: 80px;  /* CHỈNH LẠI CHO KHỚP CHIỀU CAO NAVBAR */
+    left: 0;
+    width: 230px;
+    height: calc(100vh - 80px);  /* Cùng chiều cao với top */
+    background: #1f2937;
+    padding-top: 20px;
+    color: white;
+    overflow-y: auto;
+    border-right: 2px solid #111827;
+}
+
+/* Các mục sidebar */
+.admin-sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    color: #e5e7eb;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.admin-sidebar a:hover {
+    background: #374151;
+    padding-left: 26px; /* hiệu ứng trượt nhẹ */
+}
+
+/* Mục đang active */
+.admin-sidebar a.active {
+    background: #4b5563;
+    color: #fbbf24;
+    font-weight: 600;
+    border-left: 4px solid #fbbf24;
+    padding-left: 26px;
+}
+
+/* Scrollbar mảnh và đẹp */
+.admin-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.admin-sidebar::-webkit-scrollbar-thumb {
+    background: #4b5563;
+    border-radius: 5px;
+}
+
+
+/* ============================
+   CONTENT ADMIN
+   ============================ */
+.admin-content {
+    margin-left: 230px;
+    padding: 90px 25px;
+}
+
+/* Giảm padding khi sidebar nhỏ (responsvie) */
+@media(max-width: 992px) {
+    .admin-sidebar {
+        width: 180px;
+    }
+    .admin-content {
+        margin-left: 180px;
+    }
+}
+
+@media(max-width: 768px) {
+    .admin-sidebar {
+        display: none; /* Mobile: ẩn sidebar */
+    }
+    .admin-content {
+        margin-left: 0;
+        padding: 100px 20px;
+    }
+}

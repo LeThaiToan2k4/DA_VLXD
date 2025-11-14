@@ -1,0 +1,11 @@
+/* chỉ dành cho admin/sanpham/* */
+.table-sanpham th {
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+.table-sanpham td img {
+    width: 80px;
+    height: auto;
+    border-radius: 4px;
+}
