@@ -7,13 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class ChiTietXimang extends Model
 {
     protected $table = 'CHITIET_XIMANG';
-    protected $primaryKey = 'MASP';
+    protected $primaryKey = 'id';
     public $timestamps = false;
-
-    protected $fillable = ['MASP', 'KHOILUONG', 'NHANHIEU', 'NGOAIDACDIEM'];
-
-    public function sanpham()
-    {
-        return $this->belongsTo(SanPham::class, 'MASP', 'MASP');
-    }
 }

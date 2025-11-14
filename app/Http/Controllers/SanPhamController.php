@@ -2,40 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\SanPham;
 use App\Models\LoaiSanPham;
+use Illuminate\Http\Request;
 
 class SanPhamController extends Controller
 {
+    // Danh sách sản phẩm
     public function index()
     {
-        $sanphams = SanPham::with('loai', 'dvt')->get();
+        $sanphams = SanPham::with('loai')->get();
         return view('admin.sanpham.index', compact('sanphams'));
     }
 
+    // Hiển thị form thêm
     public function create()
     {
         $loais = LoaiSanPham::all();
         return view('admin.sanpham.create', compact('loais'));
     }
 
+    // Lưu sản phẩm mới
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'TENSP' => 'required|string|max:100',
-            'MALOAI' => 'required|integer',
-            'MADVT' => 'required|integer',
-            'DONGIABAN' => 'required|numeric',
-            'BANLE' => 'required|boolean',
-            'MOTA' => 'nullable|string',
-            'HINHANH' => 'nullable|string|max:200',
+        $request->validate([
+            'TENSP' => 'required',
+            'DVT' => 'required',
+            'GIA' => 'required|numeric',
+            'MALOAI' => 'required',
         ]);
 
-        SanPham::create($data);
-        return redirect()->route('admin.sanpham.index')->with('success', 'Đã thêm sản phẩm mới!');
+        SanPham::create($request->all());
+        return redirect()->route('admin.sanpham.index')->with('success', 'Thêm sản phẩm thành công!');
     }
 
+    // Hiển thị form sửa
     public function edit($id)
     {
         $sanpham = SanPham::findOrFail($id);
@@ -43,45 +45,19 @@ class SanPhamController extends Controller
         return view('admin.sanpham.edit', compact('sanpham', 'loais'));
     }
 
+    // Cập nhật
     public function update(Request $request, $id)
     {
-        $data = $request->validate([
-            'TENSP' => 'required|string|max:100',
-            'MALOAI' => 'required|integer',
-            'MADVT' => 'required|integer',
-            'DONGIABAN' => 'required|numeric',
-            'BANLE' => 'required|boolean',
-            'MOTA' => 'nullable|string',
-            'HINHANH' => 'nullable|string|max:200',
-        ]);
-        SanPham::findOrFail($id)->update($data);
-        return redirect()->route('admin.sanpham.index')->with('success', 'Đã cập nhật sản phẩm!');
+        $sanpham = SanPham::findOrFail($id);
+        $sanpham->update($request->all());
+        return redirect()->route('admin.sanpham.index')->with('success', 'Cập nhật sản phẩm thành công!');
     }
 
+    // Xóa
     public function destroy($id)
     {
-        SanPham::destroy($id);
+        $sanpham = SanPham::findOrFail($id);
+        $sanpham->delete();
         return redirect()->route('admin.sanpham.index')->with('success', 'Đã xóa sản phẩm!');
-    }
-
-    public function show($id)
-    {
-        $sp = SanPham::with(
-            'loai',
-            'dvt',
-            'chitietCat',
-            'chitietDa',
-            'chitietXimang',
-            'chitietSatThep',
-            'chitietGach',
-            'chitietSon',
-            'chitietOng',
-            'chitietPhuKienOng',
-            'chitietBonCauChauRua',
-            'chitietDayDien',
-            'chitietThietBiDien',
-            'chitietTrangTri'
-        )->findOrFail($id);
-        return view('admin.sanpham.show', compact('sp'));
     }
 }
